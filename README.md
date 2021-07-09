@@ -23,3 +23,5 @@ optional arguments:
   --output OUTPUT  output geojson filename
   --bbox BBOX      bounding box to filter grids, format as x1,y1,x2,y2
 ```
+
+example: `python3 qpesums_netcdf_convert.py --input /tmp/QPESUMS-test.nc --bbox 122.5,22,123.5,23` will generate the geojson grid polygon with qpesums precipitation_observed last data as `QPESUMS.json`
