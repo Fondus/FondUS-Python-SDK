@@ -25,3 +25,35 @@ optional arguments:
 ```
 
 example: `python3 qpesums_netcdf_convert.py --input /tmp/QPESUMS-test.nc --bbox 122.5,22,123.5,23` will generate the geojson grid polygon with qpesums precipitation_observed last data as `QPESUMS.json`
+
+
+#### dataflow-api tools
+
+Tools to get data from FEWS Taiwan dataflow API
+
+##### Install
+1. clone this project to local folder
+2. enter dataflow-api-tools folder `cd FondUS-Python-SDK/dataflow-api-tools`
+3. run pip to install required dependency `python3 -m pip install -r requirements.txt`
+4. run `python3 dataflow-api2csv --help` to check the usage
+```
+```
+$ python3 dataflow-api2csv.py --help
+usage: dataflow-api2csv.py [-h] [--host HOST] [--dataset DATASET] [--output OUTPUT] [--timerange TIMERANGE] [--username USERNAME] [--password PASSWORD]
+                           [--client_id CLIENT_ID] [--client_secret CLIENT_SECRET]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --host HOST           host to access, defaults to https://gateway.floodaware.tw
+  --dataset DATASET     dataset to extract, simulated/timeseries/catchment-basins/rainfall-01h-merged
+  --output OUTPUT       output csv filename, defaults to output.csv
+  --timerange TIMERANGE
+                        timerange to query, with format 'from=2020-08-31T00.00.00&to=2020-09-01T00.00.00' if not provided will extract latest
+  --username USERNAME   username to access data
+  --password PASSWORD   password to access data
+  --client_id CLIENT_ID
+                        client_id to access data
+  --client_secret CLIENT_SECRET
+                        client_secret to access data
+
+```
