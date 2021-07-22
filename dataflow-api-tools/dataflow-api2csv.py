@@ -61,20 +61,18 @@ json_data = json.loads(content.decode('utf-8'))
 list=[]
 datalist=json_data['data'] if timequery else [json_data['data']]
 for dataset in datalist:
-  t0=dataset['T0']
   for location in dataset['PiTimeSeriesArray']:
     row=dict()
-    row['T0']=t0
-    row['LocationId']=location['Header']['LocationId']
-    row['LocationName']=location['Header']['LocationName']
+    row['Location Names']=location['Header']['LocationName']
+    row['Location Ids']=location['Header']['LocationId']
+    row['Time (UTC)']=location['Header']['ParameterId']+' ('+location['Header']['QualifierId']+")"
     h=0
     for event in location['Events']:
-      row[f"H{h}"]=event['Value']
-      h=h+1
+      row[event['Date']]=event['Value']
     list.append(row)
 
-pd_data = pd.DataFrame.from_records(list)
+pd_data = pd.DataFrame.from_records(list).transpose()
 
-pd_data.to_csv(outputfile, index=False)
+pd_data.to_csv(outputfile, header=False)
 
 print("Data has been written to ", outputfile)
