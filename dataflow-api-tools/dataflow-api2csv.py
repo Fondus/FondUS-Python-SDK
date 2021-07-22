@@ -3,6 +3,7 @@ from requests_oauthlib import OAuth2Session
 from urllib.request import Request, urlopen  # Python 3
 from urllib.parse import urljoin
 import pandas as pd
+import datetime
 import json,sys,argparse
 
 parser = argparse.ArgumentParser()
@@ -65,10 +66,11 @@ for dataset in datalist:
     row=dict()
     row['Location Names']=location['Header']['LocationName']
     row['Location Ids']=location['Header']['LocationId']
-    row['Time (UTC)']=location['Header']['ParameterId']+' ('+location['Header']['QualifierId']+")"
-    h=0
+    row['Time(UTC)']=location['Header']['ParameterId']+'_'+location['Header']['QualifierId']+' ['+location['Header']['Unit']+']'
     for event in location['Events']:
-      row[event['Date']]=event['Value']
+      dt=datetime.datetime.strptime(event['Date'], "%Y-%m-%dT%H:%M:%S.%fZ")
+      dts=dt.strftime('%Y-%m-%d %H:%M:%S')
+      row[dts]=event['Value']
     list.append(row)
 
 pd_data = pd.DataFrame.from_records(list).transpose()
