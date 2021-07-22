@@ -66,7 +66,7 @@ for dataset in datalist:
     row=dict()
     row['Location Names']=location['Header']['LocationName']
     row['Location Ids']=location['Header']['LocationId']
-    row['Time(UTC)']=location['Header']['ParameterId']+'_'+location['Header']['QualifierId']+' ['+location['Header']['Unit']+']'
+    row['Time(UTC)']=location['Header']['ParameterId']+'_'+location['Header']['QualifierId']
     for event in location['Events']:
       dt=datetime.datetime.strptime(event['Date'], "%Y-%m-%dT%H:%M:%S.%fZ")
       dts=dt.strftime('%Y-%m-%d %H:%M:%S')
