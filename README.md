@@ -57,3 +57,26 @@ optional arguments:
                         client_secret to access data
 
 ```
+
+#### wflow-water-index tools
+
+Tools to parse wflow output netcdf data and do basic analysis to calculate % with water flowing of each grid cell
+
+
+##### Install
+1. clone this project to local folder
+2. enter wflow-water-index folder `cd FondUS-Python-SDK/wflow-water-index`
+3. run pip to install required dependency `python3 -m pip install -r requirements.txt`
+4. run `python3 wflow-water-index --help` to check the usage
+
+```
+usage: wflow-water-index.py [-h] [--input INPUT] [--output OUTPUT] [--bbox BBOX] [--skip SKIP]
+
+optional arguments:
+  -h, --help       show this help message and exit
+  --input INPUT    source NC filename
+  --output OUTPUT  output XYM ascii filename
+  --bbox BBOX      bounding box to filter grids, format as x1,y1,x2,y2
+  --skip SKIP      skip data of first N steps when model is warming up, default = 24 hour
+```
+
